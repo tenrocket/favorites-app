@@ -2,33 +2,33 @@ require 'sinatra'
 enable :run
 
 get "/error" do
-	"Hold on there killa.  That may not be awesome."
+	erb :"favorites/error"
 end
 
 get "/" do
 	redirect "/favorites"
 end
 
-get "/Error" do
-	redirect "/error"
+get "/favorites" do
+	@favorites = Favorite.favorites
+	erb :"favorites/index"
 end
 
-get "/favorites" do
-	@favorites = Favorites.favorites
-	erb :"favorites/index"
+get "/confirm" do
+	erb :"favorites/confirm"
 end
 
 post "/favorites" do
 	text = params[:description]
-	if Favorites.add_to_favorites(text)
-		redirect "/favorites"
+	if Favorite.add_to_favorites(text)
+		redirect "/confirm"
 	else
-		redirect "/Error"
+		redirect "/error"
 	end
 end
 
-class Favorites
-	@@favorites = ["Led Zeppelin", "Nike Courage Commercial", "Planet Earth Series"]
+class Favorite
+	@@favorites = ["Founders", "New Holland", "Bell's", "Wild Heaven"]
 
 	def initialize
 	end
@@ -38,7 +38,12 @@ class Favorites
 	end
 
 	def self.add_to_favorites(favorites)
-		if favorites == "Speed Bumps"
+		if favorites.include? "Bud" 
+		elsif favorites.include? "Miller"
+		elsif favorites.include? "Rolling" 
+		elsif favorites.include? "Pabst"
+		elsif favorites.include? "Coors" 
+		elsif favorites.include? "Keystone" 
 			return false
 		else
 			@@favorites << favorites

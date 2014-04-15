@@ -1,20 +1,27 @@
 <html>
 <head>
-	<title>Baller Favorites App</title>
+	<title>Favorite Breweries App</title>
 	<link rel="stylesheet" type="text/css" href="application.css">
 </head>
 
 <body>
-	<h1>These things are awesome:</h1>
+	<div class = "header">
+		<h1>What are your favorite <em>breweries?</em></h1>
+	</div>
+	<div class = "form">
+		<form action = "/favorites" method = "post">
+			<input type = "text" id = "description" name = "description">
+			<input type = "submit">
+		</form>
+	</div>
 
-	<ul>
-		<% @favorites.each do |favorite| %>
-		<li><%= favorite %></li>
-		<% end %>
-	</ul>
-	<form action = "/favorites" method = "post">
-		<input type = "text" id = "description" name = "description">
-		<input type = "submit">
-	</form>
+	<div class = "menu">
+		<ul>
+			<% @favorites.each do |favorite| %>
+			<li><%= favorite %></li>
+			<% end %>
+		</ul>
+	</div>
+
 </body>
 </html>

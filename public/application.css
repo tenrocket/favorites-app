@@ -1,8 +1,95 @@
+body {
+	background-image: url(http://api.ning.com/files/mWq-Pv8RWzTzEuleWha09W0ILvprvktNhOCF95whnJXFku8Y9y7GXGjsKx6jo3tKx6oO65hIQUnqsQA2xz-PD7mSvjL8vIzR/pintofguinness.jpg);
+	margin: 0px;
+}
+
 ul {
-	color: blue;
+	color: yellow;
+	list-style: none;
+	text-transform: uppercase;
+	font-family: Garamond, sans-serif;
+	padding: 0px;
+	margin-left: 10px;
+	display: inline-flex;
+}
+
+li {
+	padding-right: .75em;
 }
 
 h1 {
-	color: red;
-	font-weight: bold;
+	margin-top: 400px;
+	color: white;
+	font-family: Impact;
+	text-transform: uppercase;
 }
+
+h1 em {
+	color: yellow;
+}
+
+h1 span {
+	margin-top: 15px;
+	color: white;
+	font-family: Impact;
+	text-transform: uppercase;
+	position: absolute;
+	z-index: 5;
+	margin-left: 10px;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+	font-size: 2em;
+	margin-left: 10px;
+}
+
+a:hover {
+	color: yellow;
+}
+
+h2 {
+	margin-top: 0px;
+}
+.menu {
+	height: 200px;
+	width: 100%;
+	background-color: black;
+	opacity: .5;
+	margin-bottom: 0px;
+}
+
+.header {
+	margin-left: 10px;
+}
+
+.form {
+	margin-left: 10px;
+}
+
+.confirm {
+	position: relative;
+}
+
+#confirm-bar {
+	width: 530px;
+	height: 68px;
+	margin-top: 480px;
+	background-color: rgb(218, 32, 211);
+	opacity: .9;
+	position: relative;
+}
+
+#confirm-bar-two {
+	width: 735px;
+	height: 68px;
+	margin-top: 480px;
+	background-color: goldenrod;
+	opacity: .9;
+	position: relative;
+}
+
+
+
+
