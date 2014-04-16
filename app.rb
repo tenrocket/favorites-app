@@ -1,5 +1,7 @@
 require 'sinatra'
-enable :run
+require "sinatra/activerecord"
+
+set :database, "sqlite3:///favorite_things.db"
 
 get "/error" do
 	erb :"favorites/error"
@@ -10,7 +12,7 @@ get "/" do
 end
 
 get "/favorites" do
-	@favorites = Favorite.favorites
+	@favorites = Favorite.all
 	erb :"favorites/index"
 end
 
@@ -19,35 +21,49 @@ get "/confirm" do
 end
 
 post "/favorites" do
-	text = params[:description]
-	if Favorite.add_to_favorites(text)
+	@favorite = Favorite.new(params[:favorite])
+	if @favorite.meet_criteria?
+		@favorite.save
 		redirect "/confirm"
 	else
 		redirect "/error"
 	end
 end
 
-class Favorite
-	@@favorites = ["Founders", "New Holland", "Bell's", "Wild Heaven"]
+# delete "/favorites" do
+# 	@deleted_fav = Favorite.new(params[:favorite])
+# 	if @deleted_fav
+# 		@deleted_fav.delete
+# 		redirect "/favorites"
+# 	else
+# 		redirect "/error"
+# 	end
+# end
 
-	def initialize
+delete "/favorites" do
+	@deleted_fav= Favorite.find(params[:favorite])
+	if favorite.delete 
+		redirect "/favorites"
+	else
+		redirect "/error"
 	end
+end
 
-	def self.favorites
-		@@favorites
-	end
-
-	def self.add_to_favorites(favorites)
-		if favorites.include? "Bud" 
-		elsif favorites.include? "Miller"
-		elsif favorites.include? "Rolling" 
-		elsif favorites.include? "Pabst"
-		elsif favorites.include? "Coors" 
-		elsif favorites.include? "Keystone" 
+class Favorite < ActiveRecord::Base
+	BAD_BEERS = [ "Bud Light", "Miller", "Rolling", "Pabst", "Coors", "Keystone" ]
+	def meet_criteria?
+		if BAD_BEERS.include? self[:description]
 			return false
 		else
-			@@favorites << favorites
+			return true
 		end
 	end
 
+	def delete_breweries(brewery)
+		if @deleted_fav.include? brewery
+			@deleted_fav.delete(brewery)
+		else
+			return false
+		end
+	end
 end

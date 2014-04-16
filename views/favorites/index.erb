@@ -9,16 +9,22 @@
 		<h1>What are your favorite <em>breweries?</em></h1>
 	</div>
 	<div class = "form">
-		<form action = "/favorites" method = "post">
-			<input type = "text" id = "description" name = "description">
+		<form action="/favorites" method="post">
+			<input type="text" id="description" name="favorite[description]">
 			<input type = "submit">
+		</form>
+	</div>
+	<div class = "form-two">
+		<form action="/favorites" method="delete">
+  		<input type="text" id="description" name="favorite[description]" value="delete" />
+  		<input type="submit" value="Delete" />
 		</form>
 	</div>
 
 	<div class = "menu">
 		<ul>
 			<% @favorites.each do |favorite| %>
-			<li><%= favorite %></li>
+			<li><%= favorite.description %></li>
 			<% end %>
 		</ul>
 	</div>
