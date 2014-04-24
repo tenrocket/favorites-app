@@ -30,22 +30,17 @@ post "/favorites" do
 	end
 end
 
-# delete "/favorites" do
-# 	@deleted_fav = Favorite.new(params[:favorite])
-# 	if @deleted_fav
-# 		@deleted_fav.delete
-# 		redirect "/favorites"
-# 	else
-# 		redirect "/error"
-# 	end
-# end
+get '/favorites/:id' do
+	@delete_favorite = Favorite.find(params[:id])
+	erb :"favorites/show"
+end
 
-delete "/favorites" do
-	@deleted_fav= Favorite.find(params[:favorite])
-	if favorite.delete 
-		redirect "/favorites"
+delete '/favorites/:id' do
+	@delete_favorite = Favorite.find(params[:id])
+	if @delete_favorite.delete
+		redirect '/favorites'
 	else
-		redirect "/error"
+		redirect '/favorites/:id'
 	end
 end
 
@@ -59,11 +54,11 @@ class Favorite < ActiveRecord::Base
 		end
 	end
 
-	def delete_breweries(brewery)
-		if @deleted_fav.include? brewery
-			@deleted_fav.delete(brewery)
-		else
-			return false
-		end
-	end
+	# def delete_breweries(brewery)
+	# 	if @deleted_fav.include? brewery
+	# 		@deleted_fav.delete(brewery)
+	# 	else
+	# 		return false
+	# 	end
+	# end
 end

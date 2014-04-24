@@ -1,6 +1,6 @@
-<%= @favorites.description %>
+<%= @delete_favorite.id %>
 
-<form action="/favorites/<%= @favorites.id %>" method="post">
+<form action="/favorites/<%= @delete_favorite.id %>" method="post">
   <input type="hidden" name="_method" value="delete" />
   <input type="submit" value="Delete" />
 </form>

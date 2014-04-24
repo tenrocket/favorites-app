@@ -14,17 +14,19 @@
 			<input type = "submit">
 		</form>
 	</div>
-	<div class = "form-two">
-		<form action="/favorites" method="delete">
-  		<input type="text" id="description" name="favorite[description]" value="delete" />
-  		<input type="submit" value="Delete" />
+<!-- 	<div class = "form-two">
+		<form action="delete" method="delete">
+  		<input type="text" id="description" name="favorite[description]" value="delete">
+  		<input type="hidden"
+  		<input type="submit" value="Delete">
 		</form>
-	</div>
+	</div> -->
 
 	<div class = "menu">
 		<ul>
 			<% @favorites.each do |favorite| %>
 			<li><%= favorite.description %></li>
+			<li><a class="btn btn-default" href= 'favorites/<%= favorite.id %>' role="button"> Delete &raquo;</a></li>
 			<% end %>
 		</ul>
 	</div>
